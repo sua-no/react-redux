@@ -1,15 +1,17 @@
+import { createAction } from 'redux-actions';
+
 const CHANGE_INPUT = 'todos/CHANGE_INPUT';
 const INSERT = 'todos/INSERT';
 const TOGGLE = 'todos/TOGGLE';
 const REMOVE = 'todos/REMOVE';
 
-export const changeInput = input => ({
-    type: CHANGE_INPUT,
-    input
-});
+// export const changeInput = input => ({
+//     type: CHANGE_INPUT,
+//     input
+// });
+export const changeInput = createAction(CHANGE_INPUT, input => input);
 
 let id = 3;
-
 export const insert = text => ({
     type: INSERT,
     todo: {
@@ -67,7 +69,7 @@ const todos  = (state = initialState, action) => {
         case REMOVE:
             return {
                 ...state,
-                todos: state.todo.filter(todo => todo.id !== action.id)
+                todos: state.todos.filter(todo => todo.id !== action.id)
             }
         default:
             return state;
